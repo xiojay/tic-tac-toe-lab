@@ -12,11 +12,11 @@ const winningCombos = [
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-const board = Array(9).fill('')
+let board = Array(9).fill('')
 let turn = 'X'
 let winner = false
 let tie = false
-
+ 
 
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = [
@@ -40,8 +40,8 @@ const resetBtnEl = document.getElementById('reset');
 
 /*-------------------------------- Functions --------------------------------*/
 function init () {
-console.log("App Fully Loaded!")
- const board = Array(9).fill['']
+// console.log("App Fully Loaded!")
+ board = Array(9).fill('')
  turn = 'X'
  winner = false
  tie = false
@@ -116,12 +116,10 @@ function handleClick(event) {
     placePiece(squareId);
     checkForWinner();
     checkForTie();
-
-
-    turn = turn === 'X' ? 'O' : 'X';
-
+    switchPlayerTurn()
     render();
 }
+
 function placePiece(index) {
     board[index] = turn; 
     console.log(board);
@@ -137,6 +135,5 @@ function switchPlayerTurn() {
 document.addEventListener('DOMContentLoaded', init)
 squareEls.forEach(square => {
     square.addEventListener('click', handleClick);
-    resetBtnEl.addEventListener('click', init);
 })
-
+resetBtnEl.addEventListener('click', init);
